@@ -43,14 +43,14 @@ input,button{
 <script>
 
 // Two different exchange rates
-const aedToMmkRate = 87;   // 1 AED = 870 MMK
-const mmkToAedRate = 83;   // 830 MMK = 1 AED
+const aedToMmkRate = 87;   
+const mmkToAedRate = 83;   
 
 function aedToMmk(){
 
     let amount = Number(document.getElementById("amount").value);
 
-    let result = amount / aedToMmkRate;
+    let result = amount * aedToMmkRate;
 
     document.getElementById("result").innerHTML =
         amount + " AED = " +
@@ -63,7 +63,7 @@ function mmkToAed(){
 
     let amount = Number(document.getElementById("amount").value);
 
-    let result = amount * mmkToAedRate;
+    let result = amount / mmkToAedRate;
     
 
     document.getElementById("result").innerHTML =
