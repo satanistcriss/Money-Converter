@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AED ⇄ MMK Money Converter</title>
+
+<style>
+
+body{
+
+    font-family: Arial, sans-serif;
+
+    background:#f2f2f2;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    height:100vh;
+
+    margin:0;
+
+}
+
+.container{
+
+    background:#fff;
+
+    padding:20px;
+
+    border-radius:10px;
+
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+
+    width:320px;
+
+}
+
+h2{
+
+    text-align:center;
+
+}
+
+input, select, button{
+
+    width:100%;
+
+    padding:10px;
+
+    margin-top:10px;
+
+    font-size:16px;
+
+}
+
+button{
+
+    background:#007BFF;
+
+    color:white;
+
+    border:none;
+
+    cursor:pointer;
+
+}
+
+button:hover{
+
+    background:#0056b3;
+
+}
+
+.result{
+
+    margin-top:20px;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    text-align:center;
+
+}
+
+.rate{
+
+    text-align:center;
+
+    color:gray;
+
+    margin-top:10px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>AED ⇄ MMK Converter</h2>
+
+    <input type="number" id="amount" placeholder="Enter Amount">
+
+    <select id="type">
+
+        <option value="aedToMmk">AED ➜ MMK</option>
+
+        <option value="mmkToAed">MMK ➜ AED</option>
+
+    </select>
+
+    <button onclick="convert()">Convert</button>
+
+    <div class="rate">
+
+        AED → MMK Rate: <b>87</b><br>
+
+        MMK → AED Rate: <b>83</b>
+
+    </div>
+
+    <div class="result" id="result"></div>
+
+</div>
+
+<script>
+
+// Base Rate
+
+const BASE_RATE = 100000;
+
+// Selling Rate
+
+const AED_TO_MMK_RATE = 87;
+
+// Buying Rate
+
+const MMK_TO_AED_RATE = 83;
+
+function convert(){
+
+    let amount = parseFloat(document.getElementById("amount").value);
+
+    let type = document.getElementById("type").value;
+
+    if(isNaN(amount) || amount<=0){
+
+        document.getElementById("result").innerHTML="Please enter a valid amount.";
+
+        return;
+
+    }
+
+    let result;
+
+    if(type==="aedToMmk"){
+
+        // AED → MMK
+
+        result = amount * BASE_RATE / AED_TO_MMK_RATE;
+
+        document.getElementById("result").innerHTML =
+
+        amount.toFixed(2) + " AED = <br><b>" +
+
+        result.toLocaleString(undefined,{maximumFractionDigits:0}) +
+
+        " MMK</b>";
+
+    }else{
+
+        // MMK → AED
+
+        result = amount * MMK_TO_AED_RATE / BASE_RATE;
+
+        document.getElementById("result").innerHTML =
+
+        amount.toLocaleString() + " MMK = <br><b>" +
+
+        result.toFixed(2) +
+
+        " AED</b>";
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>
