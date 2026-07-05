@@ -50,7 +50,7 @@ function aedToMmk(){
 
     let amount = Number(document.getElementById("amount").value);
 
-    let result = amount / aedToMmkRate;
+    let result = amount * aedToMmkRate;
 
     document.getElementById("result").innerHTML =
         amount + " AED = " +
