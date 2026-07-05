@@ -30,26 +30,23 @@ input,button{
 
 
 <script>
-const rates = {
-    aedToMmk: 1149,
-    mmkToAed: 1205
-};
+// Exchange rates
+const AED_TO_MMK_RATE = 1149; // 1 AED = 1149 MMK
+const MMK_TO_AED_RATE = 1205; // 1 AED = 1205 MMK (used when converting MMK back to AED)
 
-function convert(amount, from, to) {
-    if (from === "AED" && to === "MMK") {
-        return amount * rates.aedToMmk;
-    }
+// AED -> MMK
+function aedToMmk(aed) {
+    return aed * AED_TO_MMK_RATE;
+}
 
-    if (from === "MMK" && to === "AED") {
-        return amount / rates.mmkToAed;
-    }
-
-    throw new Error("Unsupported currency conversion");
+// MMK -> AED
+function mmkToAed(mmk) {
+    return mmk / MMK_TO_AED_RATE;
 }
 
 // Examples
-console.log(convert(100, "AED", "MMK"));    // 114900
-console.log(convert(120500, "MMK", "AED")); // 100
+console.log("100 AED =", aedToMmk(100), "MMK");      // 114900 MMK
+console.log("120500 MMK =", mmkToAed(120500), "AED"); // 100 AED
 
 </script>
 
